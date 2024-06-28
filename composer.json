@@ -1,4 +1,15 @@
 {
+    "name": "vladKhDev/codeception-data-provider",
+    "description":"Suggested fix to use codeception modules from Actor in data provider",
+    "keywords":["codeception", "dataProvider", "mvp"],
+    "type":"project",
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Vladyslav Khoemnko",
+            "email":"mr.vlad.homenko@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Tests\\": "tests/"
