@@ -7,6 +7,7 @@ namespace Tests\Acceptance;
 use Codeception\Example;
 use Tests\Support\AcceptanceTester;
 
+use function iterator_to_array;
 use function json_decode;
 
 class SampleCest
@@ -16,15 +17,17 @@ class SampleCest
      */
     public function tryToTest(AcceptanceTester $I, Example $example)
     {
-        $I->assertEquals([1,2,3], (array)$example->getIterator());
+        $I->assertEquals(
+            ['test1' => [1,2,3]],
+            iterator_to_array($example->getIterator()));
     }
 
     private function dataProvider(AcceptanceTester $I): \Generator
     {
         $I->runShellCommand('/app/bin/dataProvider');
         $I->seeResultCodeIs(0);
-        $additionalData = json_decode($I->grabShellOutput());
+        $additionalData = json_decode($I->grabShellOutput(), true);
 
-        yield 'test1' => [$additionalData];
+        yield 'test1' => $additionalData;
     }
 }

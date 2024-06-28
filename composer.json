@@ -1,18 +1,18 @@
 {
-    "autoload-dev": {
+    "autoload": {
         "psr-4": {
             "Tests\\": "tests/"
         }
     },
     "require-dev": {
+    },
+    "require": {
+        "php": "^8.3",
         "codeception/codeception": "^5.1",
         "codeception/module-asserts": "^3.0",
         "codeception/module-cli": "^2.0"
     },
-    "require": {
-        "php": "^8.3"
-    },
-    "autoload": {
+    "autoload-dev": {
         "files": [
             "fix/Cest.php",
             "fix/Loader.php",

@@ -83,7 +83,12 @@ class SuiteManager
 
     public function loadTests(string $path = null): void
     {
-        $testLoader = new Loader($this->settings);
+        $settings = $this->settings;
+        $settings['di'] = $this->di;
+        $settings['dispatcher'] = $this->dispatcher;
+        $settings['modules'] = $this->moduleContainer;
+
+        $testLoader = new Loader($settings);
         $testLoader->loadTests($path);
 
         $tests = $testLoader->getTests();

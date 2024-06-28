@@ -6,7 +6,6 @@ namespace Codeception\Test\Loader;
 
 use Codeception\Command\Shared\ActorTrait;
 use Codeception\Lib\Parser;
-use Codeception\Scenario;
 use Codeception\Test\Cest as CestFormat;
 use Codeception\Test\DataProvider;
 use ReflectionClass;
@@ -63,6 +62,12 @@ class Cest implements LoaderInterface
                 }
 
                 $test = new CestFormat($unit, $method, $filename);
+                $test->getMetadata()->setServices([
+                    'di' => clone($this->settings['di']),
+                    'dispatcher' => $this->settings['dispatcher'],
+                    'modules' => $this->settings['modules'],
+                ]);
+
                 $I = $this->getActor($test);
 
                 $examples = DataProvider::getDataForMethod(
